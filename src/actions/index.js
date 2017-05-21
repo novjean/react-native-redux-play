@@ -1,4 +1,5 @@
 //Action creator
+import { Actions } from 'react-native-router-flux';
 import {
   USERNAME_CHANGED,
   PASSWORD_CHANGED,
@@ -54,6 +55,7 @@ const loginUserSuccess = (dispatch, user) => {
       type: LOGIN_USER_SUCCESS,
       payload: user.data
     });
+    Actions.main();
   } else {
     loginUserFail(dispatch);
   }
