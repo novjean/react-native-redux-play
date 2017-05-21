@@ -1,6 +1,4 @@
 //Action creator
-import axios from 'axios';
-
 import {
   USERNAME_CHANGED,
   PASSWORD_CHANGED,
@@ -29,13 +27,17 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER }); //Starting the spinner
-    axios.get('https://portal.virtualdoorman.com/dev/common/libs/slim/resident_login/' +
-    username + '/' + password)
-      .then(user => loginUserSuccess(dispatch, user))
-      .catch((error) => {
-        console.log(error);
-        loginUserFail(dispatch);
-      });
+    let url = 'https://portal.virtualdoorman.com/dev/common/libs/slim/resident_login/' +
+    username + '/' + password;
+    fetch(url, {"method": "GET"})
+    .then((response) => response.json())
+    .then((user) => loginUserSuccess(dispatch, user))
+    .catch((error) => {
+      console.log('Failed in fetch.');
+      console.log(error);
+      loginUserFail(dispatch);
+    })
+    .done();
   };
 };
 
@@ -47,8 +49,7 @@ const loginUserFail = (dispatch) => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  const status = user.data[0].STATUS;
-  if (status === 'valid') {
+  if (user[0].STATUS === 'valid') {
     dispatch({
       type: LOGIN_USER_SUCCESS,
       payload: user.data
@@ -57,3 +58,15 @@ const loginUserSuccess = (dispatch, user) => {
     loginUserFail(dispatch);
   }
 };
+
+// const fetchTest = (url) => {
+//   console.log('url' + url);
+//   fetch(url, {"method": "GET"})
+//   .then((response) => response.json())
+//   .then((responseData) => {
+//     console.log('Start of ResponseData');
+//     console.log(responseData);
+//     console.log('End of ResponseData');
+//   })
+//   .done();
+// };
