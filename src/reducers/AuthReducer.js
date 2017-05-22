@@ -3,7 +3,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  FORGOT_CREDENTIALS
 } from '../actions/types';
 
 //defualt initial state
@@ -34,6 +35,8 @@ export default (state = INITIAL_STATE, action) => {
         password: '',
         loading: false
       };
+      case FORGOT_CREDENTIALS:
+        return { ...state, loading: true, error: '' };
     default:
       return state;
   }

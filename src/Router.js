@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
+import ForgotCredentials from './components/ForgotCredentials';
 
 const RouterComponent = () => {
   return (
@@ -12,6 +13,11 @@ const RouterComponent = () => {
           component={LoginForm}
           title="Virtual Doorman"
           initial
+        />
+        <Scene
+          key="forgotCreds"
+          component={ForgotCredentials}
+          title="Forgot Credentials"
         />
       </Scene>
 

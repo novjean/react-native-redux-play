@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import { usernameChanged, passwordChanged, loginUser } from '../actions';
+import { usernameChanged,
+  passwordChanged,
+  loginUser,
+  forgotCredentials
+  } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
@@ -12,19 +16,49 @@ class LoginForm extends Component {
     this.props.passwordChanged(text);
   }
 
-  onButtonPress() {
+  onLoginPress() {
     const { username, password } = this.props;
 
     this.props.loginUser({ username, password });
   }
 
-  renderButton() {
+  onSignUpPress() {
+
+  }
+
+  onForgotCredentialsPress() {
+    this.props.forgotCredentials();
+  }
+
+  renderLoginButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
+      <Button onPress={this.onLoginPress.bind(this)}>
         Login
+      </Button>
+    );
+  }
+
+  renderSignUpButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <Button onPress={this.onSignUpPress.bind(this)}>
+        Sign Up
+      </Button>
+    );
+  }
+
+  renderForgotCredentialsButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <Button onPress={this.onForgotCredentialsPress.bind(this)}>
+        Forgot Credentials
       </Button>
     );
   }
@@ -56,7 +90,15 @@ class LoginForm extends Component {
         </Text>
 
         <CardSection>
-          {this.renderButton()}
+          {this.renderLoginButton()}
+        </CardSection>
+
+        <CardSection>
+          {this.renderSignUpButton()}
+        </CardSection>
+
+        <CardSection>
+          {this.renderForgotCredentialsButton()}
         </CardSection>
       </Card>
     );
@@ -80,5 +122,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  usernameChanged, passwordChanged, loginUser
+  usernameChanged, passwordChanged, loginUser, forgotCredentials
 })(LoginForm);

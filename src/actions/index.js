@@ -5,7 +5,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  FORGOT_CREDENTIALS
  } from './types';
 
 //onUsernameChange Action
@@ -39,6 +40,14 @@ export const loginUser = ({ username, password }) => {
       loginUserFail(dispatch);
     })
     .done();
+  };
+};
+
+export const forgotCredentials = () => {
+  return (dispatch) => {
+    console.log('forgot credentials action called.');
+    dispatch({ type: FORGOT_CREDENTIALS });
+    Actions.forgotCreds();
   };
 };
 
