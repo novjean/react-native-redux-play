@@ -29,9 +29,9 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER }); //Starting the spinner
-    let url = 'https://portal.virtualdoorman.com/dev/common/libs/slim/resident_login/' +
-    username + '/' + password;
-    fetch(url, {"method": "GET"})
+    // let url = 'https://portal.virtualdoorman.com/dev/common/libs/slim/resident_login/' +
+    // username + '/' + password;
+    fetch(`https://portal.virtualdoorman.com/dev/common/libs/slim/resident_login/${username}/${password}`, { "method": "GET" })
     .then((response) => response.json())
     .then((user) => loginUserSuccess(dispatch, user))
     .catch((error) => {
