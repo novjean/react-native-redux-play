@@ -11,7 +11,7 @@ const RouterComponent = () => {
       <Scene key="auth" >
         <Scene
           key="login"
-          hideNavBar={false}
+          hideNavBar={true}
           component={LoginForm}
           title="Virtual Doorman"
           initial
@@ -34,7 +34,7 @@ const RouterComponent = () => {
         />
       </Scene>
 
-      <Scene key="main" >
+      <Scene key="main">
         <Scene
           key="homePage"
           component={HomePage}

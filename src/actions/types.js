@@ -7,3 +7,5 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 export const FORGOT_CREDENTIALS = 'forgot_credentials';
 export const SIGNUP_USER = 'signup_user';
+
+export const SELECT_MENU = 'select_menu';

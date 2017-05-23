@@ -1,39 +1,41 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Card, CardSection } from './common';
+import { ListView } from 'react-native';
+import { connect } from 'react-redux';
+import MenuItem from './homepage/MenuItem';
+import { Card } from './common';
+import {
+
+} from '../actions';
 
 class HomePage extends Component {
-  render() {
+  componentWillMount() {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(this.props.libraries);
+  }
+  renderRow(library) {
     return (
       <Card>
-
-        <CardSection>
-          <Text>Guests/ Companies </Text>
-        </CardSection>
-
-        <CardSection>
-          <Text>Recent Activity</Text>
-        </CardSection>
-
-        <CardSection>
-          <Text>Order Access Cards</Text>
-        </CardSection>
-
-        <CardSection>
-          <Text>Building Contacts</Text>
-        </CardSection>
-
-        <CardSection>
-          <Text>My Account</Text>
-        </CardSection>
-
-        <CardSection>
-          <Text>Intercom</Text>
-        </CardSection>
-
+        <MenuItem library={library} />
+      </Card>
+    );
+  }
+  render() {
+    return (
+      <Card style={{ flex: 1 }}>
+        <ListView
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
       </Card>
     );
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+  return { libraries: state.menuItems };
+};
+
+export default connect(mapStateToProps)(HomePage);

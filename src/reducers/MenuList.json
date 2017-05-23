@@ -1,0 +1,33 @@
+[
+  {"id": 0,
+  "title": "Guests / Deliveries",
+  "description": "This is the guest and delivery seciton.",
+  "submenus": ["Guests Management", "Delivery Management"]
+  },
+  {"id": 1,
+  "title": "Recent Activity",
+  "description": "Can view the logs for packages and guests",
+  "submenus": ["Guests Log", "Package Deliveries"]
+  },
+  {"id": 2,
+  "title": "Order Access Cards",
+  "description": "order the key cards and FOB's here",
+  "submenus": ["Order Key Cards", "Order History"]
+  },
+  {"id": 3,
+  "title": "Contacts",
+  "description": "Need help, you can contact anybody here",
+  "submenus": ["My Building", "My Virtual Doorman", "Emergency Contacts"]
+
+  },
+  {"id": 4,
+  "title": "My Account",
+  "description": "This is all your details.",
+  "submenus": ["Add Photo", "Edit Account", "RedHat Service", "Reset Password"]
+  },
+  {"id": 5,
+  "title": "Intercom",
+  "description": "Our camera system installed to protect you",
+  "submenus": ["Building Cameras", "TBD"]
+  }
+]

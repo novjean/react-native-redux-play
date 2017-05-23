@@ -61,6 +61,10 @@ class LoginForm extends Component {
 
   render() {
     return (
+      // Background Image
+      <View style={{ flex: 1 }}>
+        <Image source={require('../images/login.jpg')} style={styles.backgroundImage}>
+
       <Card style={styles.loginCard}>
         <CardSection style={{ backgroundColor: 'transparent', borderBottomWidth: 0 }}>
           <Input
@@ -74,7 +78,7 @@ class LoginForm extends Component {
         <CardSection
           style={{
             backgroundColor: 'transparent',
-            paddingBottom: 50,
+            paddingBottom: 100,
             borderBottomWidth: 0
           }}
         >
@@ -91,23 +95,21 @@ class LoginForm extends Component {
           {this.props.error}
         </Text>
 
-        <CardSection>
+        <CardSection style={styles.buttonStyleCardSection}>
           {this.renderLoginButton()}
         </CardSection>
 
-        <CardSection>
+        <CardSection style={styles.buttonStyleCardSection}>
           {this.renderSignUpButton()}
         </CardSection>
 
-        <CardSection>
+        <CardSection style={styles.buttonStyleCardSection}>
           {this.renderForgotCredentialsButton()}
         </CardSection>
       </Card>
-      // Background Image
-      // <View style={{ flex: 1 }}>
-      //   <Image source={require('../images/login.png')} style={styles.backgroundImage}>
-      //   </Image>
-      // </View>
+
+        </Image>
+      </View>
     );
   }
 }
@@ -136,6 +138,10 @@ const styles = {
     marginRight: 0,
     marginTop: 0,
     marginBottom: 0
+  },
+  buttonStyleCardSection: {
+    backgroundColor: 'transparent',
+    borderBottomWidth: 0
   }
 };
 
