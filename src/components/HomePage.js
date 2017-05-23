@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { Card, CardSection } from './common';
 
 class HomePage extends Component {
   render() {
     return (
-      <View>
-        <Text> Guests/ Employees </Text>
-        <Text>Recent Activity</Text>
-        <Text>Order Access Cards</Text>
-        <Text>Building Contacts</Text>
-        <Text>My Account</Text>
-        <Text>Intercom</Text>
+      <Card>
 
-      </View>
+        <CardSection>
+          <Text>Guests/ Companies </Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>Recent Activity</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>Order Access Cards</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>Building Contacts</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>My Account</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>Intercom</Text>
+        </CardSection>
+
+      </Card>
     );
   }
 }

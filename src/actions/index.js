@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  FORGOT_CREDENTIALS
+  FORGOT_CREDENTIALS,
+  SIGNUP_USER
  } from './types';
 
 //onUsernameChange Action
@@ -48,6 +49,13 @@ export const forgotCredentials = () => {
     console.log('forgot credentials action called.');
     dispatch({ type: FORGOT_CREDENTIALS });
     Actions.forgotCreds();
+  };
+};
+
+export const signUp = () => {
+  return (dispatch) => {
+    dispatch({ type: SIGNUP_USER });
+    Actions.signUp();
   };
 };
 

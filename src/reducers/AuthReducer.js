@@ -4,7 +4,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  FORGOT_CREDENTIALS
+  FORGOT_CREDENTIALS,
+  SIGNUP_USER
 } from '../actions/types';
 
 //defualt initial state
@@ -13,7 +14,9 @@ const INITIAL_STATE = {
   password: '',
   user: null,
   error: '',
-  loading: false
+  loadingLogin: false,
+  loadingForgotCreds: false,
+  loadingSignUp: false
 };
 
 //assign state default value as it cant return undefined
@@ -26,17 +29,19 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHANGED:
       return { ...state, password: action.payload };
     case LOGIN_USER:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loadingLogin: true, error: '' };
     case LOGIN_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case LOGIN_USER_FAIL:
       return { ...state,
         error: 'Authentication Failed.',
         password: '',
-        loading: false
+        loadingLogin: false
       };
       case FORGOT_CREDENTIALS:
-        return { ...state, loading: true, error: '' };
+        return { ...state, loadingForgotCreds: true, error: '' };
+      case SIGNUP_USER:
+        return { ...state, loadingSignUp: true, error: '' };
     default:
       return state;
   }

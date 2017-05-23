@@ -1,8 +1,9 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
 import ForgotCredentials from './components/ForgotCredentials';
+import SignUpPage from './components/SignUpPage';
 
 const RouterComponent = () => {
   return (
@@ -10,14 +11,26 @@ const RouterComponent = () => {
       <Scene key="auth" >
         <Scene
           key="login"
+          hideNavBar={false}
           component={LoginForm}
           title="Virtual Doorman"
           initial
+          //  navigationBarStyle={{ backgroundColor: 'transparent' }}
+          //  titleWrapperStyle={styles.navBarStyle}
+          //  titleStyle={{ backgroundColor: "#A40234", height: 30 }}
         />
         <Scene
           key="forgotCreds"
           component={ForgotCredentials}
           title="Forgot Credentials"
+          onBack={() => Actions.login({ type: 'reset' })} //Not resolved yet
+        />
+        <Scene
+          key="signUp"
+          component={SignUpPage}
+          title="Sign Up"
+          // showNavigationBar={false}
+          onBack={() => Actions.login({ type: 'reset' })} //Not resolved
         />
       </Scene>
 
@@ -27,11 +40,18 @@ const RouterComponent = () => {
           component={HomePage}
           title="Home"
           rightTitle="Logout"
-          onRight={() => console.log('Logout!!!')}
+          onRight={() => Actions.auth({ type: 'reset' })}
         />
       </Scene>
     </Router>
   );
 };
+
+//Styling
+// const styles = {
+//   navBarStyle: {
+//     backgroundColor: '#A40234',
+//   }
+// };
 
 export default RouterComponent;
