@@ -21,7 +21,8 @@ const INITIAL_STATE = {
 
 //assign state default value as it cant return undefined
 export default (state = INITIAL_STATE, action) => {
-  // console.log(action);
+  console.log('AuthReducer:');
+  console.log(action);
 
   switch (action.type) {
     case USERNAME_CHANGED:

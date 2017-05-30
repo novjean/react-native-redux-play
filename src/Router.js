@@ -7,29 +7,31 @@ import SignUpPage from './components/SignUpPage';
 
 const RouterComponent = () => {
   return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
+    <Router sceneStyle={{ paddingTop: 60 }}>
       <Scene key="auth" >
         <Scene
           key="login"
-          hideNavBar={true}
+          hideNavBar={false}
           component={LoginForm}
           title="Virtual Doorman"
           initial
-          //  navigationBarStyle={{ backgroundColor: 'transparent' }}
-          //  titleWrapperStyle={styles.navBarStyle}
-          //  titleStyle={{ backgroundColor: "#A40234", height: 30 }}
+          navigationBarStyle={{ backgroundColor: '#A40234' }}
+          titleStyle={styles.titleStyle}
         />
         <Scene
           key="forgotCreds"
           component={ForgotCredentials}
           title="Forgot Credentials"
+          navigationBarStyle={{ backgroundColor: '#A40234' }}
+          titleStyle={styles.titleStyle}
           onBack={() => Actions.login({ type: 'reset' })} //Not resolved yet
         />
         <Scene
           key="signUp"
           component={SignUpPage}
           title="Sign Up"
-          // showNavigationBar={false}
+          navigationBarStyle={{ backgroundColor: '#A40234' }}
+          titleStyle={styles.titleStyle}
           onBack={() => Actions.login({ type: 'reset' })} //Not resolved
         />
       </Scene>
@@ -40,6 +42,8 @@ const RouterComponent = () => {
           component={HomePage}
           title="Home"
           rightTitle="Logout"
+          navigationBarStyle={{ backgroundColor: '#A40234' }}
+          titleStyle={styles.titleStyle}
           onRight={() => Actions.auth({ type: 'reset' })}
         />
       </Scene>
@@ -47,11 +51,14 @@ const RouterComponent = () => {
   );
 };
 
-//Styling
-// const styles = {
-//   navBarStyle: {
-//     backgroundColor: '#A40234',
-//   }
-// };
+// Styling
+const styles = {
+  titleStyle: {
+    color: 'white',
+    fontSize: 23,
+    fontFamily: 'arial',
+    fontWeight: 'bold'
+  }
+};
 
 export default RouterComponent;

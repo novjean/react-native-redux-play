@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log('SelectionReducer:');
   console.log(action);
 
   switch (action.type) {

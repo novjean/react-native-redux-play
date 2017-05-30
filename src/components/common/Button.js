@@ -2,13 +2,11 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 //TouchableOpacity is just a button which gives some feedback to the user
-const Button = ({ onPress, children }) => {
-  const { buttonStyle, textStyle } = styles;
-
+const Button = (props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle}>
-      <Text style={textStyle}>
-        {children}
+    <TouchableOpacity onPress={props.onPress} style={[styles.buttonStyle, props.style]}>
+      <Text style={[styles.textStyle, props.style]}>
+        {props.children}
       </Text>
     </TouchableOpacity>
   );
@@ -29,12 +27,12 @@ const styles = {
   buttonStyle: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#a40234',
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 30,
+    marginRight: 30
   }
 };
 

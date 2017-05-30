@@ -3,15 +3,25 @@ import {
   Text,
   TouchableWithoutFeedback,
   View,
+  ListView,
   LayoutAnimation,
   Platform,
   UIManager
   } from 'react-native';
   import { connect } from 'react-redux';
-  import { CardSection } from '../common';
-  import * as actions from '../../actions';
+  import { Card, CardSection, Button } from '../common';
+  import { selectLibrary } from '../../actions';
 
   class MenuItem extends Component {
+    componentWillMount() {
+      const ds = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      });
+      const { library } = this.props;
+      console.log(library.submenus);
+
+      this.dataSource = ds.cloneWithRows(library.submenus);
+    }
     componentWillUpdate() {
       if (Platform.OS === 'android') {
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -20,7 +30,6 @@ import {
     }
     renderDescription() {
       const { library, expanded } = this.props;
-      console.log(library.submenus);
       //Comparing the selectedLibraryId and the library ID
       if (expanded) {
         return (
@@ -31,9 +40,31 @@ import {
       }
     }
 
+    renderSubMenuItems(submenuItem) {
+      return (
+        <Card>
+          <Button>{submenuItem}</Button>
+        </Card>
+      );
+    }
+
+    rendersubMenu() {
+      const { expanded } = this.props;
+      if (expanded) {
+        return (
+          <CardSection>
+            <ListView
+              dataSource={this.dataSource}
+              renderRow={this.renderSubMenuItems}
+            />
+          </CardSection>
+        );
+      }
+    }
+
     render() {
       const { titleStyle } = styles;
-      const { id, title, submenus } = this.props.library;
+      const { id, title } = this.props.library;
       return (
         <TouchableWithoutFeedback
           onPress={() => this.props.selectLibrary(id)}
@@ -45,6 +76,10 @@ import {
               </Text>
             </CardSection>
             {this.renderDescription()}
+            {this.rendersubMenu()}
+
+
+
           </View>
         </TouchableWithoutFeedback>
       );
@@ -60,8 +95,9 @@ import {
   };
 
 const mapStateToProps = (state, ownProps) => {
+  // console.log(state.selectedMenuItem.library);
   const expanded = state.selectedMenuItem === ownProps.library.id;
   return { expanded };
 };
 
-export default connect(mapStateToProps, actions)(MenuItem);
+export default connect(mapStateToProps, { selectLibrary })(MenuItem);

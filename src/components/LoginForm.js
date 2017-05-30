@@ -33,7 +33,7 @@ class LoginForm extends Component {
       return <Spinner size="large" />;
     }
     return (
-      <Button onPress={this.onLoginPress.bind(this)}>
+      <Button style={styles.buttonStyle} onPress={this.onLoginPress.bind(this)}>
         Login
       </Button>
     );
@@ -43,7 +43,7 @@ class LoginForm extends Component {
       return <Spinner size="large" />;
     }
     return (
-      <Button onPress={this.onSignUpPress.bind(this)}>
+      <Button style={styles.buttonStyle} onPress={this.onSignUpPress.bind(this)}>
         Sign Up
       </Button>
     );
@@ -53,7 +53,7 @@ class LoginForm extends Component {
       return <Spinner size="large" />;
     }
     return (
-      <Button onPress={this.onForgotCredentialsPress.bind(this)}>
+      <Button style={styles.buttonStyle} onPress={this.onForgotCredentialsPress.bind(this)}>
         Forgot Credentials
       </Button>
     );
@@ -68,8 +68,8 @@ class LoginForm extends Component {
       <Card style={styles.loginCard}>
         <CardSection style={{ backgroundColor: 'transparent', borderBottomWidth: 0 }}>
           <Input
-            label="Username"
-            placeholder="johndoe"
+            label=""
+            placeholder="Username"
             onChangeText={this.onUsernameChange.bind(this)}
             value={this.props.username}
           />
@@ -84,8 +84,8 @@ class LoginForm extends Component {
         >
           <Input
             secureTextEntry
-            label="Password"
-            placeholder="password"
+            label=""
+            placeholder="Password"
             onChangeText={this.onPasswordChange.bind(this)}
             value={this.props.password}
           />
@@ -142,6 +142,9 @@ const styles = {
   buttonStyleCardSection: {
     backgroundColor: 'transparent',
     borderBottomWidth: 0
+  },
+  buttonStyle: {
+      backgroundColor: 'transparent'
   }
 };
 
